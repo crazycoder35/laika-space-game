@@ -1,0 +1,78 @@
+{
+  "version": "1.0.0",
+  "assets": {
+    "player-ship": {
+      "type": "image",
+      "path": "sprites/player-ship.png",
+      "size": 24576,
+      "bundle": "core",
+      "tags": ["player", "sprite"]
+    },
+    "meteor-large": {
+      "type": "image",
+      "path": "sprites/meteor-large.png",
+      "size": 18432,
+      "bundle": "core",
+      "tags": ["meteor", "sprite"]
+    },
+    "background-music": {
+      "type": "audio",
+      "path": "music/background.mp3",
+      "size": 2097152,
+      "bundle": "music",
+      "encoding": "binary",
+      "metadata": {
+        "duration": 180,
+        "loop": true
+      }
+    },
+    "explosion-sound": {
+      "type": "audio",
+      "path": "sounds/explosion.wav",
+      "size": 65536,
+      "bundle": "sfx",
+      "encoding": "binary"
+    },
+    "particle-shader": {
+      "type": "shader",
+      "path": "shaders/particle.glsl",
+      "size": 1024,
+      "bundle": "effects"
+    },
+    "game-config": {
+      "type": "json",
+      "path": "config/game-config.json",
+      "size": 2048,
+      "bundle": "core"
+    }
+  },
+  "bundles": {
+    "core": {
+      "name": "Core Game Assets",
+      "assets": ["player-ship", "meteor-large", "game-config"],
+      "priority": 1,
+      "preload": true
+    },
+    "music": {
+      "name": "Music Bundle",
+      "assets": ["background-music"],
+      "priority": 2,
+      "preload": false,
+      "dependencies": ["core"]
+    },
+    "sfx": {
+      "name": "Sound Effects",
+      "assets": ["explosion-sound"],
+      "priority": 2,
+      "preload": false,
+      "dependencies": ["core"]
+    },
+    "effects": {
+      "name": "Visual Effects",
+      "assets": ["particle-shader"],
+      "priority": 3,
+      "preload": false,
+      "dependencies": ["core"]
+    }
+  }
+} 

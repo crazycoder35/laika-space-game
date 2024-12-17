@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Game - System Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            flex-direction: column;
+        }
+        canvas {
+            border: 1px solid #333;
+            background: #000;
+            display: none;
+        }
+        #debug {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none;
+        }
+        #start-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #start-button:hover {
+            background: #45a049;
+        }
+        #loading {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading...</div>
+    <button id="start-button">Start Game</button>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="debug">
+        <div>Entities: <span id="entity-count">0</span></div>
+        <div>FPS: <span id="fps">0</span></div>
+    </div>
+    <script>
+        // Show loading text while the bundle is loading
+        document.getElementById('loading').style.display = 'block';
+
+        // When the bundle is loaded, it will call this function
+        window.onGameLoaded = function() {
+            document.getElementById('loading').style.display = 'none';
+            const startButton = document.getElementById('start-button');
+            const canvas = document.getElementById('gameCanvas');
+            const debug = document.getElementById('debug');
+
+            startButton.addEventListener('click', () => {
+                // Hide start button and show canvas and debug
+                startButton.style.display = 'none';
+                canvas.style.display = 'block';
+                debug.style.display = 'block';
+
+                // Start the game
+                window.startGame();
+            });
+        };
+    </script>
+    <script src="bundle.js"></script>
+</body>
+</html>
